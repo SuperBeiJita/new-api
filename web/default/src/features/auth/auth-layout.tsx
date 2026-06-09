@@ -19,6 +19,7 @@ For commercial licensing, please contact support@quantumnous.com
 import { Link } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import { useSystemConfig } from '@/hooks/use-system-config'
+import { customUi } from '@/config/custom-ui'
 import { Skeleton } from '@/components/ui/skeleton'
 
 type AuthLayoutProps = {
@@ -30,7 +31,9 @@ export function AuthLayout({ children }: AuthLayoutProps) {
   const { systemName, logo, loading } = useSystemConfig()
 
   return (
-    <div className='relative grid h-svh max-w-none'>
+    <div className='from-background via-muted/30 to-background relative grid h-svh max-w-none overflow-hidden bg-gradient-to-br'>
+      <div className='pointer-events-none absolute inset-x-0 top-0 h-40 border-b bg-[linear-gradient(135deg,color-mix(in_oklch,var(--primary)_14%,transparent),transparent_42%,color-mix(in_oklch,var(--accent)_28%,transparent))]' />
+      <div className='pointer-events-none absolute right-0 bottom-0 h-72 w-72 translate-x-1/3 translate-y-1/3 rounded-full border bg-background/40 blur-3xl' />
       <Link
         to='/'
         className='absolute top-4 left-4 z-10 flex items-center gap-2 transition-opacity hover:opacity-80 sm:top-8 sm:left-8'
@@ -52,8 +55,16 @@ export function AuthLayout({ children }: AuthLayoutProps) {
           <h1 className='text-xl font-medium'>{systemName}</h1>
         )}
       </Link>
-      <div className='container flex items-center pt-16 sm:pt-0'>
-        <div className='mx-auto flex w-full flex-col justify-center space-y-2 px-4 py-8 sm:w-[480px] sm:p-8'>
+      <div className='container relative flex items-center pt-16 sm:pt-0'>
+        <div className='mx-auto flex w-full flex-col justify-center space-y-5 px-4 py-8 sm:w-[480px] sm:p-8'>
+          <div className='space-y-2'>
+            <p className='text-primary text-sm font-medium'>
+              {customUi.loginKicker}
+            </p>
+            <p className='text-muted-foreground text-sm leading-6'>
+              {customUi.loginTagline}
+            </p>
+          </div>
           {children}
         </div>
       </div>

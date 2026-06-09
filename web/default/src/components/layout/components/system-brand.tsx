@@ -21,6 +21,7 @@ import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
 import { useStatus } from '@/hooks/use-status'
 import { useSystemConfig } from '@/hooks/use-system-config'
+import { customUi } from '@/config/custom-ui'
 import {
   SidebarMenu,
   SidebarMenuButton,
@@ -93,7 +94,9 @@ export function SystemBrand(props: SystemBrandProps) {
           </div>
           <div className='grid flex-1 text-start text-sm leading-tight group-data-[collapsible=icon]:hidden'>
             <span className='truncate font-semibold'>{name}</span>
-            <span className='truncate text-xs'>{version}</span>
+            <span className='text-muted-foreground truncate text-xs'>
+              {version} - {customUi.badge}
+            </span>
           </div>
         </SidebarMenuButton>
       </SidebarMenuItem>
