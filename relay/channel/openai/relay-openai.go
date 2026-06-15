@@ -786,7 +786,7 @@ func OpenaiImageJSONAsStreamHandler(c *gin.Context, info *relaycommon.RelayInfo,
 		if image.Url != "" {
 			payload["url"] = image.Url
 		}
-		if image.B64Json != "" {
+		if image.Url == "" && image.B64Json != "" {
 			payload["b64_json"] = image.B64Json
 		}
 		if image.RevisedPrompt != "" {
